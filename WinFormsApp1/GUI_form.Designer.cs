@@ -137,6 +137,7 @@
             // 
             resources.ApplyResources(nmap_text_box, "nmap_text_box");
             nmap_text_box.Name = "nmap_text_box";
+            nmap_text_box.TextChanged += nmap_text_box_TextChanged;
             // 
             // gloss_text_box
             // 

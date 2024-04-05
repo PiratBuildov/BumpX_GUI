@@ -42,5 +42,14 @@ namespace WinFormsApp1
         {
 
         }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = "https://github.com/PiratBuildov/BumpX_GUI/",
+                UseShellExecute = true,
+            });
+        }
     }
 }

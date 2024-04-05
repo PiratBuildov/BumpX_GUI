@@ -17,6 +17,37 @@ namespace WinFormsApp1
         {
             MaximizeBox = false;
             quality_changer.SelectedIndex = 0;
+            if (!File.Exists("./bumpx.exe"))
+            {
+
+                MessageBox.Show("Bumpx.exe not detected!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                this.Close();
+            }
+            if (!File.Exists("./cudart64_110.dll"))
+            {
+
+                MessageBox.Show("cudart64_110.dll not detected!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                this.Close();
+            }
+            if (!File.Exists("./nvtt30106.dll"))
+            {
+
+                MessageBox.Show("nvtt30106.dll not detected!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1);
+                this.Close();
+            }
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -173,7 +204,7 @@ namespace WinFormsApp1
         {
             OpenFileDialog file = new OpenFileDialog();
             file.Title = "Choose bump file";
-            file.Filter = "DirectDraw Surface (*.dds)|*.dds";
+            file.Filter = "DirectDraw Surface (*_bump.dds)|*_bump.dds";
             file.ShowDialog();
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = "bumpx.exe";
@@ -198,6 +229,11 @@ namespace WinFormsApp1
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void nmap_text_box_TextChanged(object sender, EventArgs e)
         {
 
         }

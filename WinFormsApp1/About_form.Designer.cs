@@ -61,7 +61,7 @@
             // 
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            linkLabel1.Location = new Point(52, 269);
+            linkLabel1.Location = new Point(36, 270);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(260, 21);
             linkLabel1.TabIndex = 2;
@@ -73,18 +73,19 @@
             // 
             linkLabel2.AutoSize = true;
             linkLabel2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            linkLabel2.Location = new Point(52, 239);
+            linkLabel2.Location = new Point(36, 240);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new Size(288, 21);
+            linkLabel2.Size = new Size(317, 21);
             linkLabel2.TabIndex = 3;
             linkLabel2.TabStop = true;
-            linkLabel2.Text = "сюда положим ссылку на репо гуишки";
+            linkLabel2.Text = "https://github.com/PiratBuildov/BumpX_GUI\r\n";
+            linkLabel2.LinkClicked += linkLabel2_LinkClicked;
             // 
-            // Form2
+            // About_form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(374, 405);
+            ClientSize = new Size(374, 310);
             Controls.Add(linkLabel2);
             Controls.Add(linkLabel1);
             Controls.Add(label2);
@@ -92,7 +93,7 @@
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "Form2";
+            Name = "About_form";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "About";
             Load += Form2_Load;

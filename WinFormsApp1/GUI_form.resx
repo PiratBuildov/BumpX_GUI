@@ -149,6 +149,9 @@
   <data name="&gt;&gt;nmap_label.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="btn_choose_nmap.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
@@ -164,9 +167,6 @@
   <data name="btn_choose_nmap.Text" xml:space="preserve">
     <value>Choose file</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>272, 17</value>
-  </metadata>
   <data name="btn_choose_nmap.ToolTip" xml:space="preserve">
     <value>Normal map is necessary to create bump.</value>
   </data>
@@ -306,12 +306,6 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="about_bumpx.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -336,14 +330,20 @@
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="about_bumpx.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="btn_dis_bump.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="btn_dis_bump.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 387</value>
+    <value>21, 372</value>
   </data>
   <data name="btn_dis_bump.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 39</value>
+    <value>157, 54</value>
   </data>
   <data name="btn_dis_bump.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -351,6 +351,9 @@
   <data name="btn_dis_bump.Text" xml:space="preserve">
     <value>Unpack bump</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="btn_dis_bump.ToolTip" xml:space="preserve">
     <value>Disassembles _bump and _bump# into height map, gloss map and normal map.</value>
   </data>
