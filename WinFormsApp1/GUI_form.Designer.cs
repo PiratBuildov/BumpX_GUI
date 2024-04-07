@@ -47,6 +47,7 @@
             label1 = new Label();
             bump_text_box = new TextBox();
             toolTip1 = new ToolTip(components);
+            force_lin_gloss = new CheckBox();
             quality_label = new Label();
             quality_changer = new ComboBox();
             menuStrip1.SuspendLayout();
@@ -143,11 +144,13 @@
             // 
             resources.ApplyResources(gloss_text_box, "gloss_text_box");
             gloss_text_box.Name = "gloss_text_box";
+            gloss_text_box.TextChanged += gloss_text_box_TextChanged;
             // 
             // hmap_text_box
             // 
             resources.ApplyResources(hmap_text_box, "hmap_text_box");
             hmap_text_box.Name = "hmap_text_box";
+            hmap_text_box.TextChanged += hmap_text_box_TextChanged;
             // 
             // label1
             // 
@@ -161,10 +164,19 @@
             bump_text_box.Name = "bump_text_box";
             toolTip1.SetToolTip(bump_text_box, resources.GetString("bump_text_box.ToolTip"));
             // 
+            // force_lin_gloss
+            // 
+            resources.ApplyResources(force_lin_gloss, "force_lin_gloss");
+            force_lin_gloss.Name = "force_lin_gloss";
+            toolTip1.SetToolTip(force_lin_gloss, resources.GetString("force_lin_gloss.ToolTip"));
+            force_lin_gloss.UseVisualStyleBackColor = true;
+            force_lin_gloss.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // quality_label
             // 
             resources.ApplyResources(quality_label, "quality_label");
             quality_label.Name = "quality_label";
+            quality_label.Click += quality_label_Click;
             // 
             // quality_changer
             // 
@@ -179,6 +191,7 @@
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
+            Controls.Add(force_lin_gloss);
             Controls.Add(quality_changer);
             Controls.Add(quality_label);
             Controls.Add(bump_text_box);
@@ -226,5 +239,6 @@
         private ToolTip toolTip1;
         private Label quality_label;
         private ComboBox quality_changer;
+        private CheckBox force_lin_gloss;
     }
 }

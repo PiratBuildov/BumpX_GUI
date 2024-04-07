@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Windows.Forms.VisualStyles;
@@ -11,6 +12,7 @@ namespace WinFormsApp1
         {
             InitializeComponent();
             this.TopMost = true;
+            this.quality_changer.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -109,6 +111,7 @@ namespace WinFormsApp1
             String hmap;
             String quality_index;
             String output;
+            String lin_gloss_check;
             if (nmap_text_box.Text == "")
             {
                 MessageBox.Show("Normal map is empty!",
@@ -136,6 +139,14 @@ namespace WinFormsApp1
             else
             {
                 gloss = gloss_text_box.Text;
+            }
+            if (force_lin_gloss.Checked = true)
+            {
+                lin_gloss_check = "-l:g";
+            }
+            else
+            {
+                lin_gloss_check = "";
             }
             if (hmap_text_box.Text == "")
             {
@@ -179,7 +190,7 @@ namespace WinFormsApp1
             }
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = "bumpx.exe";
-            psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} -l:g -q:{quality_index} -o:{output}";
+            psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} {lin_gloss_check} -q:{quality_index} -o:{output}";
             Process.Start(psi).WaitForExit();
             MessageBox.Show("Bump packed succesfully!",
                 "Packing done!",
@@ -234,6 +245,26 @@ namespace WinFormsApp1
         }
 
         private void nmap_text_box_TextChanged(object sender, EventArgs e)
+        {
+            nmap_text_box.ReadOnly = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gloss_text_box_TextChanged(object sender, EventArgs e)
+        {
+            nmap_text_box.ReadOnly = true;
+        }
+
+        private void hmap_text_box_TextChanged(object sender, EventArgs e)
+        {
+            nmap_text_box.ReadOnly = true;
+        }
+
+        private void quality_label_Click(object sender, EventArgs e)
         {
 
         }

@@ -126,7 +126,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="nmap_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 59</value>
+    <value>12, 49</value>
   </data>
   <data name="nmap_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 25</value>
@@ -147,7 +147,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nmap_label.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>272, 17</value>
@@ -156,7 +156,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="btn_choose_nmap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 49</value>
+    <value>559, 39</value>
   </data>
   <data name="btn_choose_nmap.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 45</value>
@@ -180,13 +180,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_choose_nmap.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="btn_choose_gloss.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="btn_choose_gloss.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 115</value>
+    <value>559, 105</value>
   </data>
   <data name="btn_choose_gloss.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 45</value>
@@ -210,7 +210,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_choose_gloss.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="gloss_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -219,7 +219,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="gloss_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 125</value>
+    <value>12, 115</value>
   </data>
   <data name="gloss_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>99, 25</value>
@@ -240,13 +240,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gloss_label.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="btn_choose_height.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="btn_choose_height.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 176</value>
+    <value>559, 202</value>
   </data>
   <data name="btn_choose_height.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 45</value>
@@ -271,7 +271,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_choose_height.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="height_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -280,7 +280,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="height_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 186</value>
+    <value>12, 212</value>
   </data>
   <data name="height_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 25</value>
@@ -301,7 +301,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;height_label.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -310,7 +310,7 @@
     <value>0, 0</value>
   </data>
   <data name="menuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>580, 24</value>
+    <value>707, 24</value>
   </data>
   <data name="menuStrip1.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -328,7 +328,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
@@ -351,9 +351,6 @@
   <data name="btn_dis_bump.Text" xml:space="preserve">
     <value>Unpack bump</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>272, 17</value>
-  </metadata>
   <data name="btn_dis_bump.ToolTip" xml:space="preserve">
     <value>Disassembles _bump and _bump# into height map, gloss map and normal map.</value>
   </data>
@@ -367,13 +364,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_dis_bump.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="btn_create_bump.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="btn_create_bump.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 279</value>
+    <value>559, 303</value>
   </data>
   <data name="btn_create_bump.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 45</value>
@@ -397,16 +394,16 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btn_create_bump.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
   <data name="nmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 64</value>
+    <value>144, 51</value>
   </data>
   <data name="nmap_text_box.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 23</value>
+    <value>403, 23</value>
   </data>
   <data name="nmap_text_box.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -421,13 +418,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;nmap_text_box.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="gloss_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 130</value>
+    <value>144, 117</value>
   </data>
   <data name="gloss_text_box.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 23</value>
+    <value>403, 23</value>
   </data>
   <data name="gloss_text_box.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -442,13 +439,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gloss_text_box.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="hmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 191</value>
+    <value>144, 212</value>
   </data>
   <data name="hmap_text_box.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 23</value>
+    <value>403, 23</value>
   </data>
   <data name="hmap_text_box.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -463,7 +460,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hmap_text_box.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -476,7 +473,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 289</value>
+    <value>12, 313</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 25</value>
@@ -497,13 +494,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="bump_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 289</value>
+    <value>144, 318</value>
   </data>
   <data name="bump_text_box.Size" type="System.Drawing.Size, System.Drawing">
-    <value>204, 23</value>
+    <value>403, 23</value>
   </data>
   <data name="bump_text_box.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -523,7 +520,46 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bump_text_box.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
+  </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
+  <data name="force_lin_gloss.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="force_lin_gloss.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="force_lin_gloss.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 14pt</value>
+  </data>
+  <data name="force_lin_gloss.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 163</value>
+  </data>
+  <data name="force_lin_gloss.Size" type="System.Drawing.Size, System.Drawing">
+    <value>178, 29</value>
+  </data>
+  <data name="force_lin_gloss.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="force_lin_gloss.Text" xml:space="preserve">
+    <value>Force linear gloss</value>
+  </data>
+  <data name="force_lin_gloss.ToolTip" xml:space="preserve">
+    <value>This flag forces gloss to be stored in linear rather than log.</value>
+  </data>
+  <data name="&gt;&gt;force_lin_gloss.Name" xml:space="preserve">
+    <value>force_lin_gloss</value>
+  </data>
+  <data name="&gt;&gt;force_lin_gloss.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;force_lin_gloss.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;force_lin_gloss.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="quality_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -535,7 +571,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>NoControl</value>
   </data>
   <data name="quality_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 242</value>
+    <value>12, 266</value>
   </data>
   <data name="quality_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 25</value>
@@ -556,7 +592,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;quality_label.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="quality_changer.Items" xml:space="preserve">
     <value>Nvidia Texture Tools 3 compressor (quality level 3)</value>
@@ -571,10 +607,10 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>STB compressor (quality level 0)</value>
   </data>
   <data name="quality_changer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>174, 242</value>
+    <value>144, 266</value>
   </data>
   <data name="quality_changer.Size" type="System.Drawing.Size, System.Drawing">
-    <value>373, 23</value>
+    <value>403, 23</value>
   </data>
   <data name="quality_changer.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -589,7 +625,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;quality_changer.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -598,7 +634,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>580, 438</value>
+    <value>707, 438</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
