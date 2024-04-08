@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Windows.Forms.VisualStyles;
 
@@ -18,11 +19,12 @@ namespace WinFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             MaximizeBox = false;
+            force_lin_gloss.Checked = true;
             quality_changer.SelectedIndex = 0;
             if (!File.Exists("./bumpx.exe"))
             {
 
-                MessageBox.Show("Bumpx.exe not detected!",
+                MessageBox.Show("bumpx.exe not detected!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
@@ -70,10 +72,11 @@ namespace WinFormsApp1
         private void btn_choose_nmap_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose normal map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            nmap_text_box.Text = file.FileName;
+            nmap_text_box.Text = $"\"{file.FileName}\"";
         }
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -89,19 +92,21 @@ namespace WinFormsApp1
         private void btn_choose_gloss_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose gloss map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            gloss_text_box.Text = file.FileName;
+            gloss_text_box.Text = $"\"{file.FileName}\"";
         }
 
         private void btn_choose_height_Click(object sender, EventArgs e)
         {
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose height map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            hmap_text_box.Text = file.FileName;
+            hmap_text_box.Text = $"\"{file.FileName}\"";
         }
 
         private void btn_create_bump_Click(object sender, EventArgs e)
@@ -112,6 +117,8 @@ namespace WinFormsApp1
             String quality_index;
             String output;
             String lin_gloss_check;
+            String bumpx_dir;
+            bumpx_dir = Application.StartupPath;
             if (nmap_text_box.Text == "")
             {
                 MessageBox.Show("Normal map is empty!",
@@ -140,7 +147,7 @@ namespace WinFormsApp1
             {
                 gloss = gloss_text_box.Text;
             }
-            if (force_lin_gloss.Checked = true)
+            if (force_lin_gloss.Checked == true)
             {
                 lin_gloss_check = "-l:g";
             }
@@ -189,6 +196,7 @@ namespace WinFormsApp1
                     break;
             }
             ProcessStartInfo psi = new ProcessStartInfo();
+            psi.WorkingDirectory = bumpx_dir;
             psi.FileName = "bumpx.exe";
             psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} {lin_gloss_check} -q:{quality_index} -o:{output}";
             Process.Start(psi).WaitForExit();
@@ -213,15 +221,29 @@ namespace WinFormsApp1
 
         private void btn_dis_bump_Click(object sender, EventArgs e)
         {
+            String error_map_check;
             OpenFileDialog file = new OpenFileDialog();
+            file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose bump file";
-            file.Filter = "DirectDraw Surface (*_bump.dds)|*_bump.dds";
+            file.Filter = "_bump texture (*_bump.dds)|*_bump.dds";
             file.ShowDialog();
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = "bumpx.exe";
-            psi.Arguments = $"{file.FileName}";
+            psi.Arguments = $"\"{file.FileName}\"";
+            error_map_check = file.FileName;
+            error_map_check = error_map_check.Replace(".dds", "#.dds");
             if (file.FileName != "")
             {
+                if (!File.Exists(error_map_check))
+                {
+                    MessageBox.Show("Couldn't find _bump#",
+                    "Unpacking failed!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    MessageBoxOptions.DefaultDesktopOnly);
+                    return;
+                }
                 Process.Start(psi).WaitForExit();
                 MessageBox.Show("Bump unpacked succesfully!",
                 "Unpacking done!",
@@ -256,12 +278,12 @@ namespace WinFormsApp1
 
         private void gloss_text_box_TextChanged(object sender, EventArgs e)
         {
-            nmap_text_box.ReadOnly = true;
+           gloss_text_box.ReadOnly = true;
         }
 
         private void hmap_text_box_TextChanged(object sender, EventArgs e)
         {
-            nmap_text_box.ReadOnly = true;
+            hmap_text_box.ReadOnly = true;
         }
 
         private void quality_label_Click(object sender, EventArgs e)
