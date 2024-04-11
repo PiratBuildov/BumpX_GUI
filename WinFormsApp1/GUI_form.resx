@@ -399,26 +399,8 @@
   <metadata name="openFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>132, 17</value>
   </metadata>
-  <data name="nmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 51</value>
-  </data>
-  <data name="nmap_text_box.Size" type="System.Drawing.Size, System.Drawing">
-    <value>403, 23</value>
-  </data>
-  <data name="nmap_text_box.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;nmap_text_box.Name" xml:space="preserve">
-    <value>nmap_text_box</value>
-  </data>
-  <data name="&gt;&gt;nmap_text_box.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;nmap_text_box.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;nmap_text_box.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="gloss_text_box.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="gloss_text_box.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 117</value>
@@ -439,7 +421,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;gloss_text_box.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
+  </data>
+  <data name="hmap_text_box.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="hmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 212</value>
@@ -460,7 +445,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hmap_text_box.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -494,7 +479,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="bump_text_box.Location" type="System.Drawing.Point, System.Drawing">
     <value>144, 318</value>
@@ -520,7 +505,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;bump_text_box.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="force_lin_gloss.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -556,7 +541,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;force_lin_gloss.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="quality_label.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -589,7 +574,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;quality_label.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="quality_changer.Items" xml:space="preserve">
     <value>Nvidia Texture Tools 3 compressor (quality level 3)</value>
@@ -622,7 +607,31 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>$this</value>
   </data>
   <data name="&gt;&gt;quality_changer.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
+  </data>
+  <data name="nmap_text_box.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="nmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
+    <value>144, 51</value>
+  </data>
+  <data name="nmap_text_box.Size" type="System.Drawing.Size, System.Drawing">
+    <value>403, 23</value>
+  </data>
+  <data name="nmap_text_box.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;nmap_text_box.Name" xml:space="preserve">
+    <value>nmap_text_box</value>
+  </data>
+  <data name="&gt;&gt;nmap_text_box.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;nmap_text_box.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;nmap_text_box.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

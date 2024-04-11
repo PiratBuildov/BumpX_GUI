@@ -12,7 +12,7 @@ namespace WinFormsApp1
         public GUI_form()
         {
             InitializeComponent();
-            this.TopMost = true;
+
             this.quality_changer.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
@@ -23,32 +23,35 @@ namespace WinFormsApp1
             quality_changer.SelectedIndex = 0;
             if (!File.Exists("./bumpx.exe"))
             {
-
+                this.TopMost = true;
                 MessageBox.Show("bumpx.exe not detected!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1);
+                this.TopMost = false;
                 this.Close();
             }
             if (!File.Exists("./cudart64_110.dll"))
             {
-
+                this.TopMost = true;
                 MessageBox.Show("cudart64_110.dll not detected!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1);
+                this.TopMost = false;
                 this.Close();
             }
             if (!File.Exists("./nvtt30106.dll"))
             {
-
+                this.TopMost = true;
                 MessageBox.Show("nvtt30106.dll not detected!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1);
+                this.TopMost = false;
                 this.Close();
             }
 
@@ -76,7 +79,13 @@ namespace WinFormsApp1
             file.Title = "Choose normal map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            nmap_text_box.Text = $"\"{file.FileName}\"";
+            if (!file.FileName.Equals(""))
+            {
+                nmap_text_box.Text = $"\"{file.FileName}\"";
+                nmap_text_box.ReadOnly = true;
+                nmap_text_box.Enabled = true;
+            }
+
         }
 
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
@@ -96,7 +105,13 @@ namespace WinFormsApp1
             file.Title = "Choose gloss map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            gloss_text_box.Text = $"\"{file.FileName}\"";
+            if (!file.FileName.Equals(""))
+            {
+                gloss_text_box.Text = $"\"{file.FileName}\"";
+                gloss_text_box.ReadOnly = true;
+                gloss_text_box.Enabled = true;
+            }
+
         }
 
         private void btn_choose_height_Click(object sender, EventArgs e)
@@ -106,7 +121,13 @@ namespace WinFormsApp1
             file.Title = "Choose height map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
-            hmap_text_box.Text = $"\"{file.FileName}\"";
+            if (!file.FileName.Equals(""))
+            {
+                hmap_text_box.Text = $"\"{file.FileName}\"";
+                hmap_text_box.ReadOnly = true;
+                hmap_text_box.Enabled = true;
+            }
+                
         }
 
         private void btn_create_bump_Click(object sender, EventArgs e)
@@ -121,13 +142,16 @@ namespace WinFormsApp1
             bumpx_dir = Application.StartupPath;
             if (nmap_text_box.Text == "")
             {
+                this.TopMost = true;
                 MessageBox.Show("Normal map is empty!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.DefaultDesktopOnly);
+                this.TopMost = false;
                 return;
+
             }
             else
             {
@@ -135,12 +159,14 @@ namespace WinFormsApp1
             }
             if (gloss_text_box.Text == "")
             {
+                this.TopMost = true;
                 MessageBox.Show("Gloss map is empty, default value will be used.",
                 "Notification",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Asterisk,
                  MessageBoxDefaultButton.Button1,
                  MessageBoxOptions.DefaultDesktopOnly);
+                this.TopMost = false;
                 gloss = "gloss";
             }
             else
@@ -157,12 +183,14 @@ namespace WinFormsApp1
             }
             if (hmap_text_box.Text == "")
             {
+                this.TopMost = true;
                 MessageBox.Show("Height map is empty, default value will be used.",
                 "Notification",
                  MessageBoxButtons.OK,
                  MessageBoxIcon.Asterisk,
                  MessageBoxDefaultButton.Button1,
                  MessageBoxOptions.DefaultDesktopOnly);
+                this.TopMost = false;
                 hmap = "height";
             }
             else
@@ -200,21 +228,18 @@ namespace WinFormsApp1
             psi.FileName = "bumpx.exe";
             psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} {lin_gloss_check} -q:{quality_index} -o:{output}";
             Process.Start(psi).WaitForExit();
+            this.TopMost = true;
             MessageBox.Show("Bump packed succesfully!",
                 "Packing done!",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.None,
+                MessageBoxIcon.Information,
                 MessageBoxDefaultButton.Button1,
                 MessageBoxOptions.DefaultDesktopOnly
                );
+            this.TopMost = false;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btn_choose_bump_Click(object sender, EventArgs e)
         {
 
         }
@@ -236,15 +261,18 @@ namespace WinFormsApp1
             {
                 if (!File.Exists(error_map_check))
                 {
+                    this.TopMost = true;
                     MessageBox.Show("Couldn't find _bump#",
                     "Unpacking failed!",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error,
                     MessageBoxDefaultButton.Button1,
                     MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
                     return;
                 }
                 Process.Start(psi).WaitForExit();
+                this.TopMost = true;
                 MessageBox.Show("Bump unpacked succesfully!",
                 "Unpacking done!",
                 MessageBoxButtons.OK,
@@ -252,6 +280,7 @@ namespace WinFormsApp1
                 MessageBoxDefaultButton.Button1,
                 MessageBoxOptions.DefaultDesktopOnly
                 );
+                this.TopMost = false;
             }
         }
 
@@ -266,11 +295,6 @@ namespace WinFormsApp1
 
         }
 
-        private void nmap_text_box_TextChanged(object sender, EventArgs e)
-        {
-            nmap_text_box.ReadOnly = true;
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
@@ -278,7 +302,7 @@ namespace WinFormsApp1
 
         private void gloss_text_box_TextChanged(object sender, EventArgs e)
         {
-           gloss_text_box.ReadOnly = true;
+            gloss_text_box.ReadOnly = true;
         }
 
         private void hmap_text_box_TextChanged(object sender, EventArgs e)
@@ -287,6 +311,16 @@ namespace WinFormsApp1
         }
 
         private void quality_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void nmap_text_box_TabIndexChanged(object sender, EventArgs e)
         {
 
         }

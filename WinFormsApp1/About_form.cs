@@ -15,7 +15,7 @@ namespace WinFormsApp1
         public About_form()
         {
             InitializeComponent();
-            this.TopMost = true;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)

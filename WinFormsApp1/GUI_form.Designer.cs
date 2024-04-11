@@ -41,7 +41,6 @@
             btn_dis_bump = new Button();
             btn_create_bump = new Button();
             openFileDialog1 = new OpenFileDialog();
-            nmap_text_box = new TextBox();
             gloss_text_box = new TextBox();
             hmap_text_box = new TextBox();
             label1 = new Label();
@@ -50,6 +49,7 @@
             force_lin_gloss = new CheckBox();
             quality_label = new Label();
             quality_changer = new ComboBox();
+            nmap_text_box = new TextBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -134,12 +134,6 @@
             openFileDialog1.FileName = "openFileDialog1";
             openFileDialog1.FileOk += openFileDialog1_FileOk;
             // 
-            // nmap_text_box
-            // 
-            resources.ApplyResources(nmap_text_box, "nmap_text_box");
-            nmap_text_box.Name = "nmap_text_box";
-            nmap_text_box.TextChanged += nmap_text_box_TextChanged;
-            // 
             // gloss_text_box
             // 
             resources.ApplyResources(gloss_text_box, "gloss_text_box");
@@ -186,11 +180,20 @@
             quality_changer.Name = "quality_changer";
             quality_changer.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
+            // nmap_text_box
+            // 
+            resources.ApplyResources(nmap_text_box, "nmap_text_box");
+            nmap_text_box.Name = "nmap_text_box";
+            nmap_text_box.ReadOnly = true;
+            nmap_text_box.TabIndexChanged += nmap_text_box_TabIndexChanged;
+            // 
             // GUI_form
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            AutoValidate = AutoValidate.EnablePreventFocusChange;
             BackColor = SystemColors.Control;
+            Controls.Add(nmap_text_box);
             Controls.Add(force_lin_gloss);
             Controls.Add(quality_changer);
             Controls.Add(quality_label);
@@ -198,7 +201,6 @@
             Controls.Add(label1);
             Controls.Add(hmap_text_box);
             Controls.Add(gloss_text_box);
-            Controls.Add(nmap_text_box);
             Controls.Add(btn_create_bump);
             Controls.Add(btn_dis_bump);
             Controls.Add(btn_choose_height);
@@ -231,7 +233,6 @@
         private Button btn_dis_bump;
         private Button btn_create_bump;
         private OpenFileDialog openFileDialog1;
-        private TextBox nmap_text_box;
         private TextBox gloss_text_box;
         private TextBox hmap_text_box;
         private Label label1;
@@ -240,5 +241,6 @@
         private Label quality_label;
         private ComboBox quality_changer;
         private CheckBox force_lin_gloss;
+        private TextBox nmap_text_box;
     }
 }
