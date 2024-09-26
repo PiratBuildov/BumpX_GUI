@@ -149,8 +149,15 @@
   <data name="&gt;&gt;nmap_label.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="btn_choose_nmap.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btn_choose_nmap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="btn_choose_nmap.Location" type="System.Drawing.Point, System.Drawing">
     <value>559, 39</value>
@@ -164,9 +171,6 @@
   <data name="btn_choose_nmap.Text" xml:space="preserve">
     <value>Choose file</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>272, 17</value>
-  </metadata>
   <data name="btn_choose_nmap.ToolTip" xml:space="preserve">
     <value>Normal map is necessary to create bump.</value>
   </data>
@@ -306,11 +310,8 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
-    <value>52, 20</value>
-  </data>
-  <data name="about_bumpx.Text" xml:space="preserve">
-    <value>About</value>
+  <data name="menuStrip1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="menuStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
@@ -336,6 +337,12 @@
   <data name="&gt;&gt;menuStrip1.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
+  <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 20</value>
+  </data>
+  <data name="about_bumpx.Text" xml:space="preserve">
+    <value>About</value>
+  </data>
   <data name="btn_dis_bump.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
@@ -351,6 +358,9 @@
   <data name="btn_dis_bump.Text" xml:space="preserve">
     <value>Unpack bump</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="btn_dis_bump.ToolTip" xml:space="preserve">
     <value>Disassembles _bump and _bump# into height map, gloss map and normal map.</value>
   </data>
@@ -453,7 +463,6 @@
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>

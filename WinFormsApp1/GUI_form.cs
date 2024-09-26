@@ -136,7 +136,7 @@ namespace WinFormsApp1
             String gloss;
             String hmap;
             String quality_index;
-            String output;
+            String output = "";
             String lin_gloss_check;
             String bumpx_dir;
             bumpx_dir = Application.StartupPath;
@@ -197,14 +197,14 @@ namespace WinFormsApp1
             {
                 hmap = hmap_text_box.Text;
             }
-            if (bump_text_box.Text == "")
-            {
-                output = "image";
-            }
-            else
+            if (bump_text_box.Text != "")
             {
                 output = bump_text_box.Text;
             }
+            /*            else
+                        {
+                            output = bump_text_box.Text;
+                        }*/
             switch (quality_changer.SelectedIndex)
             {
                 case 0:
@@ -227,6 +227,8 @@ namespace WinFormsApp1
             psi.WorkingDirectory = bumpx_dir;
             psi.FileName = "bumpx.exe";
             psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} {lin_gloss_check} -q:{quality_index} -o:{output}";
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
             Process.Start(psi).WaitForExit();
             this.TopMost = true;
             MessageBox.Show("Bump packed succesfully!",
@@ -255,6 +257,8 @@ namespace WinFormsApp1
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = "bumpx.exe";
             psi.Arguments = $"\"{file.FileName}\"";
+            psi.UseShellExecute = false;
+            psi.CreateNoWindow = true;
             error_map_check = file.FileName;
             error_map_check = error_map_check.Replace(".dds", "#.dds");
             if (file.FileName != "")
@@ -276,7 +280,7 @@ namespace WinFormsApp1
                 MessageBox.Show("Bump unpacked succesfully!",
                 "Unpacking done!",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.None,
+                MessageBoxIcon.Asterisk,
                 MessageBoxDefaultButton.Button1,
                 MessageBoxOptions.DefaultDesktopOnly
                 );
@@ -323,6 +327,122 @@ namespace WinFormsApp1
         private void nmap_text_box_TabIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btn_choose_nmap_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) &&
+                ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
+
+                e.Effect = DragDropEffects.Move;
+        }
+
+        private void btn_choose_nmap_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
+            {
+                string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
+                nmap_text_box.Text = null;
+                nmap_text_box.ReadOnly = true;
+                for (int i = 0; i < objects.Length; i++)
+                {
+                    if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
+                    {
+                        nmap_text_box.Text += '"' + objects[i] + '"';
+                        nmap_text_box.Enabled = true;
+                    }
+                    else
+                    {
+                        this.TopMost = true;
+                        MessageBox.Show("Wrong file extension!\nShould be .tga, .png, .jpg or .bmp!",
+                        "Error!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                }
+
+            }
+        }
+
+        private void btn_choose_gloss_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
+            {
+                string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
+                gloss_text_box.Text = null;
+                gloss_text_box.ReadOnly = true;
+                for (int i = 0; i < objects.Length; i++)
+                {
+                    if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
+                    {
+                        gloss_text_box.Text += '"' + objects[i] + '"';
+                        gloss_text_box.Enabled = true;
+                    }
+                    else
+                    {
+                        this.TopMost = true;
+                        MessageBox.Show("Wrong file extension!\nShould be .tga, .png, .jpg or .bmp!",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                }
+
+
+            }
+        }
+        private void btn_choose_gloss_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) &&
+                ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
+
+                e.Effect = DragDropEffects.Move;
+        }
+        private void btn_choose_hmap_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) &&
+                ((e.AllowedEffect & DragDropEffects.Move) == DragDropEffects.Move))
+
+                e.Effect = DragDropEffects.Move;
+        }
+
+        private void btn_choose_hmap_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
+            {
+                string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
+                hmap_text_box.Text = null;
+                hmap_text_box.ReadOnly = true;
+                for (int i = 0; i < objects.Length; i++)
+                {
+                    if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
+                    {
+                        hmap_text_box.Text += '"' + objects[i] + '"';
+                        hmap_text_box.Enabled = true;
+                    }
+                    else
+                    {
+                        this.TopMost = true;
+                        MessageBox.Show("Wrong file extension!\nShould be .tga, .png, .jpg or .bmp!",
+                        "Error!",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                }
+
+            }
+        }
+
+        private bool IsValidFileFormat(string filePath, string[] validFormats)
+        {
+            string fileExtension = Path.GetExtension(filePath).ToLower();
+            return validFormats.Contains(fileExtension);
         }
     }
 }

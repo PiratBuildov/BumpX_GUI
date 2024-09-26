@@ -67,6 +67,8 @@
             toolTip1.SetToolTip(btn_choose_nmap, resources.GetString("btn_choose_nmap.ToolTip"));
             btn_choose_nmap.UseVisualStyleBackColor = true;
             btn_choose_nmap.Click += btn_choose_nmap_Click;
+            btn_choose_nmap.DragDrop += btn_choose_nmap_DragDrop;
+            btn_choose_nmap.DragEnter += btn_choose_nmap_DragEnter;
             // 
             // btn_choose_gloss
             // 
@@ -76,6 +78,8 @@
             toolTip1.SetToolTip(btn_choose_gloss, resources.GetString("btn_choose_gloss.ToolTip"));
             btn_choose_gloss.UseVisualStyleBackColor = true;
             btn_choose_gloss.Click += btn_choose_gloss_Click;
+            btn_choose_gloss.DragDrop += btn_choose_gloss_DragDrop;
+            btn_choose_gloss.DragEnter += btn_choose_gloss_DragEnter;
             // 
             // gloss_label
             // 
@@ -91,6 +95,8 @@
             toolTip1.SetToolTip(btn_choose_height, resources.GetString("btn_choose_height.ToolTip"));
             btn_choose_height.UseVisualStyleBackColor = true;
             btn_choose_height.Click += btn_choose_height_Click;
+            btn_choose_height.DragDrop += btn_choose_hmap_DragDrop;
+            btn_choose_height.DragEnter += btn_choose_hmap_DragEnter;
             // 
             // height_label
             // 
@@ -101,8 +107,9 @@
             // menuStrip1
             // 
             menuStrip1.BackColor = SystemColors.ControlLight;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { about_bumpx });
             resources.ApplyResources(menuStrip1, "menuStrip1");
+            menuStrip1.Items.AddRange(new ToolStripItem[] { about_bumpx });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Name = "menuStrip1";
             menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
