@@ -1,14 +1,21 @@
+using BumpX_GUI.Properties;
 using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.Reflection;
 using System.Security.Cryptography;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
 namespace WinFormsApp1
 {
     public partial class GUI_form : Form
     {
+        private String[] Nmap_Files = new String[0];
+        private String[] Gloss_Files = new String[0];
+        private String[] Height_Files = new String[0];
+        private string Regex_Pattern = @"([^\\]+)$";
         public GUI_form()
         {
             InitializeComponent();
@@ -18,6 +25,8 @@ namespace WinFormsApp1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            statusStrip1.Enabled = false;
+            bump_text_box.Enabled = false;
             MaximizeBox = false;
             force_lin_gloss.Checked = true;
             quality_changer.SelectedIndex = 0;
@@ -57,81 +66,136 @@ namespace WinFormsApp1
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_choose_nmap_Click(object sender, EventArgs e)
         {
+            bump_text_box.Text = "";
+            nmap_text_box.Text = "";
+            Nmap_Files = new String[0];
+            Height_Files = new String[0];
+            Gloss_Files = new String[0];
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose normal map";
+            file.Multiselect = true;
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
             file.ShowDialog();
             if (!file.FileName.Equals(""))
             {
-                nmap_text_box.Text = $"\"{file.FileName}\"";
-                nmap_text_box.ReadOnly = true;
-                nmap_text_box.Enabled = true;
+                if (file.FileNames.Length <= 25)
+                {
+                    foreach (var item in file.FileNames)
+                    {
+                        Array.Resize<String>(ref Nmap_Files, Nmap_Files.Length + 1);
+                        Array.Resize<String>(ref Gloss_Files, Nmap_Files.Length + 1);
+                        Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
+                        Nmap_Files[Nmap_Files.Length - 1] = item;
+                        nmap_text_box.Text += $"{Regex.Match(item, Regex_Pattern).Value}, ";
+                        nmap_text_box.ReadOnly = true;
+                        nmap_text_box.Enabled = true;
+                    }
+                }
+                else
+                {
+                    this.TopMost = true;
+                    MessageBox.Show("Too many normals choosen!\nMaximum number of normals for once is 25",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                }
+                statusStrip1.Enabled = true;
+                toolStripStatusLabel1.Text = "Ready";
             }
-
-        }
-
-        private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
+            if (Nmap_Files.Length == 1)
+            {
+                bump_text_box.Enabled = true;
+            }
+            else
+            {
+                bump_text_box.Enabled = false;
+            }
         }
 
         private void btn_choose_gloss_Click(object sender, EventArgs e)
         {
+            gloss_text_box.Text = "";
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose gloss map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
+            file.Multiselect = true;
             file.ShowDialog();
             if (!file.FileName.Equals(""))
             {
-                gloss_text_box.Text = $"\"{file.FileName}\"";
-                gloss_text_box.ReadOnly = true;
-                gloss_text_box.Enabled = true;
-            }
+                if (file.FileNames.Length <= Nmap_Files.Length)
+                {
+                    for (var i = 0; i < file.FileNames.Length; i++)
+                    {
+                        Gloss_Files[i] = file.FileNames[i];
+                        gloss_text_box.Text += $"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
+                        gloss_text_box.ReadOnly = true;
+                        gloss_text_box.Enabled = true;
+                    }
+                }
+                else
+                {
+                    this.TopMost = true;
+                    MessageBox.Show("Number of chosen gloss maps doesn't equal to the number of choosen normal maps!",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                }
 
+            }
         }
 
         private void btn_choose_height_Click(object sender, EventArgs e)
         {
+            
+            hmap_text_box.Text = "";
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose height map";
             file.Filter = "Targa (*.tga)|*.tga|PNG (*.png)|*.png|BMP (*.bmp)|*.bmp|JPEG (*.jpg)|*.jpg";
+            file.Multiselect = true;
             file.ShowDialog();
             if (!file.FileName.Equals(""))
             {
-                hmap_text_box.Text = $"\"{file.FileName}\"";
-                hmap_text_box.ReadOnly = true;
-                hmap_text_box.Enabled = true;
+                if (file.FileNames.Length <= Nmap_Files.Length)
+                {
+                    for (var i = 0; i < file.FileNames.Length; i++)
+                    {
+                        Height_Files[i] = file.FileNames[i];
+                        hmap_text_box.Text += $"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
+                        hmap_text_box.ReadOnly = true;
+                        hmap_text_box.Enabled = true;
+                    }
+                }
+                else
+                {
+                    this.TopMost = true;
+                    MessageBox.Show("Number of chosen height maps doesn't equal to the number of choosen normal maps!",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error,
+                        MessageBoxDefaultButton.Button1,
+                        MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                }
+
             }
 
         }
 
         private void btn_create_bump_Click(object sender, EventArgs e)
         {
+            toolStripStatusLabel1.Text = "Ready";
+            toolStripProgressBar1.Value = 0;
             String nmap;
             String gloss;
             String hmap;
@@ -140,7 +204,7 @@ namespace WinFormsApp1
             String lin_gloss_check;
             String bumpx_dir;
             bumpx_dir = Application.StartupPath;
-            if (nmap_text_box.Text == "")
+            if (Nmap_Files.Length == 0)
             {
                 this.TopMost = true;
                 MessageBox.Show("Normal map is empty!",
@@ -153,11 +217,7 @@ namespace WinFormsApp1
                 return;
 
             }
-            else
-            {
-                nmap = nmap_text_box.Text;
-            }
-            if (gloss_text_box.Text == "")
+            if (Gloss_Files.Length == 0)
             {
                 this.TopMost = true;
                 MessageBox.Show("Gloss map is empty, default value will be used.",
@@ -169,10 +229,6 @@ namespace WinFormsApp1
                 this.TopMost = false;
                 gloss = "gloss";
             }
-            else
-            {
-                gloss = gloss_text_box.Text;
-            }
             if (force_lin_gloss.Checked == true)
             {
                 lin_gloss_check = "-l:g";
@@ -181,7 +237,7 @@ namespace WinFormsApp1
             {
                 lin_gloss_check = "";
             }
-            if (hmap_text_box.Text == "")
+            if (Height_Files.Length == 0)
             {
                 this.TopMost = true;
                 MessageBox.Show("Height map is empty, default value will be used.",
@@ -193,18 +249,10 @@ namespace WinFormsApp1
                 this.TopMost = false;
                 hmap = "height";
             }
-            else
-            {
-                hmap = hmap_text_box.Text;
-            }
             if (bump_text_box.Text != "")
             {
                 output = bump_text_box.Text;
             }
-            /*            else
-                        {
-                            output = bump_text_box.Text;
-                        }*/
             switch (quality_changer.SelectedIndex)
             {
                 case 0:
@@ -223,68 +271,70 @@ namespace WinFormsApp1
                     quality_index = "3";
                     break;
             }
+            toolStripProgressBar1.Maximum = Nmap_Files.Length;
+            toolStripProgressBar1.Step = 1;
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.WorkingDirectory = bumpx_dir;
             psi.FileName = "bumpx.exe";
-            psi.Arguments = $"-n:{nmap} -g:{gloss} -h:{hmap} {lin_gloss_check} -q:{quality_index} -o:{output}";
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
-            Process.Start(psi).WaitForExit();
-            this.TopMost = true;
-            MessageBox.Show("Bump packed succesfully!",
-                "Packing done!",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.DefaultDesktopOnly
-               );
-            this.TopMost = false;
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
+            for (int i = 0; i < Nmap_Files.Length; i++)
+            {
+                psi.Arguments = $"-n:{Nmap_Files[i]} -g:{Gloss_Files[i]} -h:{Height_Files[i]} {lin_gloss_check} -q:{quality_index} -o:{output}";
+                toolStripStatusLabel1.Text = $"Packing {i+1}/{Nmap_Files.Length}...";
+                toolStripProgressBar1.PerformStep();
+                Process.Start(psi).WaitForExit();
+            }
+            toolStripStatusLabel1.Text = "Packing done!";
         }
 
         private void btn_dis_bump_Click(object sender, EventArgs e)
         {
+            //toolStripStatusLabel1.Text = "0/0";
+            toolStripProgressBar1.Value = 0;
+             
             String error_map_check;
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose bump file";
             file.Filter = "_bump texture (*_bump.dds)|*_bump.dds";
+            file.Multiselect = true;
             file.ShowDialog();
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "bumpx.exe";
-            psi.Arguments = $"\"{file.FileName}\"";
-            psi.UseShellExecute = false;
-            psi.CreateNoWindow = true;
-            error_map_check = file.FileName;
-            error_map_check = error_map_check.Replace(".dds", "#.dds");
-            if (file.FileName != "")
+            if (!file.FileNames.Equals(""))
             {
-                if (!File.Exists(error_map_check))
+                statusStrip1.Enabled = true;
+                if (file.FileNames.Length <= 25)
                 {
-                    this.TopMost = true;
-                    MessageBox.Show("Couldn't find _bump#",
-                    "Unpacking failed!",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    MessageBoxOptions.DefaultDesktopOnly);
-                    this.TopMost = false;
-                    return;
+                    toolStripProgressBar1.Maximum = file.FileNames.Length;
+                    toolStripProgressBar1.Step = 1;
+                    ProcessStartInfo psi = new ProcessStartInfo();
+                    psi.FileName = "bumpx.exe";
+                    psi.UseShellExecute = false;
+                    psi.CreateNoWindow = true;
+                    for (var i = 0; i < file.FileNames.Length; i++)
+                    {
+                        psi.Arguments = $"\"{file.FileNames[i]}\"";
+                        error_map_check = file.FileNames[i];
+                        error_map_check = error_map_check.Replace(".dds", "#.dds");
+                        if (!File.Exists(error_map_check))
+                        {
+                            this.TopMost = true;
+                            MessageBox.Show("Couldn't find _bump#",
+                            "Unpacking failed!",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+                            this.TopMost = false;
+                        } else
+                        {
+                            Process.Start(psi).WaitForExit();
+                            toolStripProgressBar1.PerformStep();
+                            toolStripStatusLabel1.Text = $"Unpacking {i + 1}/{file.FileNames.Length}...";
+                        }
+                    }
+                    toolStripStatusLabel1.Text = "Unpacking done!";
                 }
-                Process.Start(psi).WaitForExit();
-                this.TopMost = true;
-                MessageBox.Show("Bump unpacked succesfully!",
-                "Unpacking done!",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Asterisk,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.DefaultDesktopOnly
-                );
-                this.TopMost = false;
             }
         }
 
@@ -292,16 +342,6 @@ namespace WinFormsApp1
         {
             Form form = new About_form();
             form.ShowDialog();
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void gloss_text_box_TextChanged(object sender, EventArgs e)
@@ -312,21 +352,6 @@ namespace WinFormsApp1
         private void hmap_text_box_TextChanged(object sender, EventArgs e)
         {
             hmap_text_box.ReadOnly = true;
-        }
-
-        private void quality_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void statusStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void nmap_text_box_TabIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_choose_nmap_DragEnter(object sender, DragEventArgs e)
@@ -341,6 +366,12 @@ namespace WinFormsApp1
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
             {
+                statusStrip1.Enabled = true;
+                bump_text_box.Text = "";
+                nmap_text_box.Text = "";
+                Nmap_Files = new String[0];
+                Gloss_Files = new String[0];
+                Height_Files = new String[0];
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 nmap_text_box.Text = null;
                 nmap_text_box.ReadOnly = true;
@@ -348,7 +379,11 @@ namespace WinFormsApp1
                 {
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
-                        nmap_text_box.Text += '"' + objects[i] + '"';
+                        Array.Resize<String>(ref Nmap_Files, Nmap_Files.Length + 1);
+                        Array.Resize<String>(ref Gloss_Files, Nmap_Files.Length + 1);
+                        Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
+                        Nmap_Files[Nmap_Files.Length - 1] = objects[i];
+                        nmap_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
                         nmap_text_box.Enabled = true;
                     }
                     else
@@ -370,6 +405,7 @@ namespace WinFormsApp1
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
             {
+                hmap_text_box.Text = "";
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 gloss_text_box.Text = null;
                 gloss_text_box.ReadOnly = true;
@@ -377,7 +413,9 @@ namespace WinFormsApp1
                 {
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
-                        gloss_text_box.Text += '"' + objects[i] + '"';
+                        Gloss_Files[i] = objects[i];
+                        gloss_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        gloss_text_box.ReadOnly = true;
                         gloss_text_box.Enabled = true;
                     }
                     else
@@ -414,6 +452,7 @@ namespace WinFormsApp1
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
             {
+                hmap_text_box.Text = "";
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 hmap_text_box.Text = null;
                 hmap_text_box.ReadOnly = true;
@@ -421,7 +460,9 @@ namespace WinFormsApp1
                 {
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
-                        hmap_text_box.Text += '"' + objects[i] + '"';
+                        Height_Files[i] = objects[i];
+                        hmap_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        hmap_text_box.ReadOnly = true;
                         hmap_text_box.Enabled = true;
                     }
                     else
@@ -444,5 +485,6 @@ namespace WinFormsApp1
             string fileExtension = Path.GetExtension(filePath).ToLower();
             return validFormats.Contains(fileExtension);
         }
+
     }
 }
