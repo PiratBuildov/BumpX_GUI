@@ -166,9 +166,12 @@
             // force_lin_gloss
             // 
             resources.ApplyResources(force_lin_gloss, "force_lin_gloss");
+            force_lin_gloss.BackColor = SystemColors.Control;
+            force_lin_gloss.FlatAppearance.BorderColor = SystemColors.ActiveCaption;
+            force_lin_gloss.FlatAppearance.CheckedBackColor = SystemColors.HotTrack;
             force_lin_gloss.Name = "force_lin_gloss";
             toolTip1.SetToolTip(force_lin_gloss, resources.GetString("force_lin_gloss.ToolTip"));
-            force_lin_gloss.UseVisualStyleBackColor = true;
+            force_lin_gloss.UseVisualStyleBackColor = false;
             // 
             // quality_label
             // 
@@ -177,9 +180,9 @@
             // 
             // quality_changer
             // 
+            resources.ApplyResources(quality_changer, "quality_changer");
             quality_changer.FormattingEnabled = true;
             quality_changer.Items.AddRange(new object[] { resources.GetString("quality_changer.Items"), resources.GetString("quality_changer.Items1"), resources.GetString("quality_changer.Items2"), resources.GetString("quality_changer.Items3") });
-            resources.ApplyResources(quality_changer, "quality_changer");
             quality_changer.Name = "quality_changer";
             // 
             // nmap_text_box

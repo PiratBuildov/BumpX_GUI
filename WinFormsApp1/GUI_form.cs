@@ -316,6 +316,8 @@ namespace WinFormsApp1
                         psi.Arguments = $"\"{file.FileNames[i]}\"";
                         error_map_check = file.FileNames[i];
                         error_map_check = error_map_check.Replace(".dds", "#.dds");
+                        //todo: make an expression on corrupted bump#
+                        //FileInfo error_map_size = new FileInfo(error_map_check);
                         if (!File.Exists(error_map_check))
                         {
                             this.TopMost = true;
