@@ -215,7 +215,6 @@ namespace WinFormsApp1
                     MessageBoxOptions.DefaultDesktopOnly);
                 this.TopMost = false;
                 return;
-
             }
             if (Gloss_Files.Length == 0)
             {
@@ -314,10 +313,10 @@ namespace WinFormsApp1
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
                         psi.Arguments = $"\"{file.FileNames[i]}\"";
+                        var bump_map_size = new FileInfo(file.FileNames[i]).Length;
                         error_map_check = file.FileNames[i];
                         error_map_check = error_map_check.Replace(".dds", "#.dds");
-                        //todo: make an expression on corrupted bump#
-                        //FileInfo error_map_size = new FileInfo(error_map_check);
+
                         if (!File.Exists(error_map_check))
                         {
                             this.TopMost = true;
@@ -328,14 +327,31 @@ namespace WinFormsApp1
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.DefaultDesktopOnly);
                             this.TopMost = false;
-                        } else
-                        {
-                            Process.Start(psi).WaitForExit();
-                            toolStripProgressBar1.PerformStep();
-                            toolStripStatusLabel1.Text = $"Unpacking {i + 1}/{file.FileNames.Length}...";
+                            break;
                         }
-                    }
-                    toolStripStatusLabel1.Text = "Unpacking done!";
+                        else
+                        {
+                            var error_map_size = new FileInfo(error_map_check).Length;
+                            if (error_map_size != bump_map_size || bump_map_size != error_map_size)
+                            {
+                                this.TopMost = true;
+                                MessageBox.Show("_bump and _bump# maps are not of the same size!",
+                                "Unpacking failed!",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error,
+                                MessageBoxDefaultButton.Button1,
+                                MessageBoxOptions.DefaultDesktopOnly);
+                                this.TopMost = false;
+                            }
+                            else
+                            {
+                                Process.Start(psi).WaitForExit();
+                                toolStripProgressBar1.PerformStep();
+                                toolStripStatusLabel1.Text = $"Unpacking {i + 1}/{file.FileNames.Length}...";
+                                toolStripStatusLabel1.Text = "Unpacking done!";
+                            }
+                        }
+                    } 
                 }
             }
         }
