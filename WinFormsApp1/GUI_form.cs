@@ -26,6 +26,7 @@ namespace WinFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             statusStrip1.Enabled = false;
+            toolStripProgressBar1.Value = 0;
             bump_text_box.Enabled = false;
             MaximizeBox = false;
             force_lin_gloss.Checked = true;
@@ -156,7 +157,7 @@ namespace WinFormsApp1
 
         private void btn_choose_height_Click(object sender, EventArgs e)
         {
-            
+
             hmap_text_box.Text = "";
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
@@ -194,8 +195,6 @@ namespace WinFormsApp1
 
         private void btn_create_bump_Click(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = "Ready";
-            toolStripProgressBar1.Value = 0;
             String nmap;
             String gloss;
             String hmap;
@@ -203,6 +202,8 @@ namespace WinFormsApp1
             String output = "";
             String lin_gloss_check;
             String bumpx_dir;
+            FolderBrowserDialog pack_out_dialog = new FolderBrowserDialog();
+            String pack_path = "";
             bumpx_dir = Application.StartupPath;
             if (Nmap_Files.Length == 0)
             {
@@ -215,6 +216,10 @@ namespace WinFormsApp1
                     MessageBoxOptions.DefaultDesktopOnly);
                 this.TopMost = false;
                 return;
+            }
+            else
+            {
+                toolStripStatusLabel1.Text = "Ready";
             }
             if (Gloss_Files.Length == 0)
             {
@@ -270,6 +275,18 @@ namespace WinFormsApp1
                     quality_index = "3";
                     break;
             }
+            if (pack_output_path.Checked)
+            {
+                if (pack_out_dialog.ShowDialog() == DialogResult.OK)
+                {
+                    pack_path = pack_out_dialog.SelectedPath;
+                }
+                else
+                {
+                    pack_path = "";
+                }
+                output = $"{pack_path}\\{output}";
+            }
             toolStripProgressBar1.Maximum = Nmap_Files.Length;
             toolStripProgressBar1.Step = 1;
             ProcessStartInfo psi = new ProcessStartInfo();
@@ -280,7 +297,7 @@ namespace WinFormsApp1
             for (int i = 0; i < Nmap_Files.Length; i++)
             {
                 psi.Arguments = $"-n:{Nmap_Files[i]} -g:{Gloss_Files[i]} -h:{Height_Files[i]} {lin_gloss_check} -q:{quality_index} -o:{output}";
-                toolStripStatusLabel1.Text = $"Packing {i+1}/{Nmap_Files.Length}...";
+                toolStripStatusLabel1.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
                 toolStripProgressBar1.PerformStep();
                 Process.Start(psi).WaitForExit();
             }
@@ -291,8 +308,11 @@ namespace WinFormsApp1
         {
             //toolStripStatusLabel1.Text = "0/0";
             toolStripProgressBar1.Value = 0;
-             
+
+            String unpack_output = "";
             String error_map_check;
+            FolderBrowserDialog unpack_out_dialog = new FolderBrowserDialog();
+            String unpack_path = "";
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose bump file";
@@ -304,6 +324,18 @@ namespace WinFormsApp1
                 statusStrip1.Enabled = true;
                 if (file.FileNames.Length <= 25)
                 {
+                    if (unpack_output_path.Checked)
+                    {
+                        if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            unpack_path = unpack_out_dialog.SelectedPath;
+                        }
+                        else
+                        {
+                            unpack_path = "";
+                        }
+                        unpack_output = $"{unpack_path}\\{unpack_output}";
+                    }
                     toolStripProgressBar1.Maximum = file.FileNames.Length;
                     toolStripProgressBar1.Step = 1;
                     ProcessStartInfo psi = new ProcessStartInfo();
@@ -312,11 +344,10 @@ namespace WinFormsApp1
                     psi.CreateNoWindow = true;
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
-                        psi.Arguments = $"\"{file.FileNames[i]}\"";
+                        psi.Arguments = $"\"{file.FileNames[i]}\" {unpack_output}";
                         var bump_map_size = new FileInfo(file.FileNames[i]).Length;
                         error_map_check = file.FileNames[i];
                         error_map_check = error_map_check.Replace(".dds", "#.dds");
-
                         if (!File.Exists(error_map_check))
                         {
                             this.TopMost = true;
@@ -351,7 +382,7 @@ namespace WinFormsApp1
                                 toolStripStatusLabel1.Text = "Unpacking done!";
                             }
                         }
-                    } 
+                    }
                 }
             }
         }
@@ -360,6 +391,10 @@ namespace WinFormsApp1
         {
             Form form = new About_form();
             form.ShowDialog();
+        }
+        private void nmap_text_box_TextChanged(object sender, EventArgs e)
+        {
+            nmap_text_box.ReadOnly = true;
         }
 
         private void gloss_text_box_TextChanged(object sender, EventArgs e)
@@ -503,6 +538,5 @@ namespace WinFormsApp1
             string fileExtension = Path.GetExtension(filePath).ToLower();
             return validFormats.Contains(fileExtension);
         }
-
     }
 }

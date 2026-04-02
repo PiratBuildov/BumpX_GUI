@@ -150,7 +150,7 @@
     <value>16</value>
   </data>
   <data name="btn_choose_nmap.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btn_choose_nmap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
@@ -187,7 +187,7 @@
     <value>15</value>
   </data>
   <data name="btn_choose_gloss.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_choose_gloss.Location" type="System.Drawing.Point, System.Drawing">
     <value>559, 95</value>
@@ -247,7 +247,7 @@
     <value>14</value>
   </data>
   <data name="btn_choose_height.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_choose_height.Location" type="System.Drawing.Point, System.Drawing">
     <value>559, 190</value>
@@ -313,6 +313,24 @@
   <data name="menuStrip1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
+  <data name="pack_output_path.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="pack_output_path.Text" xml:space="preserve">
+    <value>Packing: ask for output path</value>
+  </data>
+  <data name="unpack_output_path.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 22</value>
+  </data>
+  <data name="unpack_output_path.Text" xml:space="preserve">
+    <value>Unpacking: ask for output path</value>
+  </data>
+  <data name="outputToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>57, 20</value>
+  </data>
+  <data name="outputToolStripMenuItem.Text" xml:space="preserve">
+    <value>Output</value>
+  </data>
   <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
   </data>
@@ -344,7 +362,7 @@
     <value>17</value>
   </data>
   <data name="btn_dis_bump.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_dis_bump.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 353</value>
@@ -374,7 +392,7 @@
     <value>10</value>
   </data>
   <data name="btn_create_bump.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_create_bump.Location" type="System.Drawing.Point, System.Drawing">
     <value>559, 282</value>
@@ -522,26 +540,17 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <data name="&gt;&gt;bump_text_box.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="force_lin_gloss.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
   <data name="force_lin_gloss.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="force_lin_gloss.CheckAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="force_lin_gloss.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
   </data>
   <data name="force_lin_gloss.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="force_lin_gloss.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 133</value>
+    <value>144, 133</value>
   </data>
   <data name="force_lin_gloss.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 35</value>
+    <value>178, 29</value>
   </data>
   <data name="force_lin_gloss.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -550,7 +559,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>Force linear gloss</value>
   </data>
   <data name="force_lin_gloss.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+    <value>MiddleRight</value>
   </data>
   <data name="force_lin_gloss.ToolTip" xml:space="preserve">
     <value>This flag forces gloss to be stored in linear rather than log.</value>
@@ -667,10 +676,10 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>369, 17</value>
   </metadata>
   <data name="toolStripStatusLabel1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14pt</value>
+    <value>Segoe UI, 13pt</value>
   </data>
   <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 25</value>
+    <value>72, 25</value>
   </data>
   <data name="toolStripStatusLabel1.Text" xml:space="preserve">
     <value>Waiting</value>
@@ -1006,6 +1015,24 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>GUI for BumpX</value>
+  </data>
+  <data name="&gt;&gt;outputToolStripMenuItem.Name" xml:space="preserve">
+    <value>outputToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;outputToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pack_output_path.Name" xml:space="preserve">
+    <value>pack_output_path</value>
+  </data>
+  <data name="&gt;&gt;pack_output_path.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;unpack_output_path.Name" xml:space="preserve">
+    <value>unpack_output_path</value>
+  </data>
+  <data name="&gt;&gt;unpack_output_path.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;about_bumpx.Name" xml:space="preserve">
     <value>about_bumpx</value>

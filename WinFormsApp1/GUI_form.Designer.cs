@@ -37,6 +37,9 @@
             btn_choose_height = new Button();
             height_label = new Label();
             menuStrip1 = new MenuStrip();
+            outputToolStripMenuItem = new ToolStripMenuItem();
+            pack_output_path = new ToolStripMenuItem();
+            unpack_output_path = new ToolStripMenuItem();
             about_bumpx = new ToolStripMenuItem();
             btn_dis_bump = new Button();
             btn_create_bump = new Button();
@@ -109,9 +112,27 @@
             // 
             menuStrip1.BackColor = SystemColors.ControlLight;
             resources.ApplyResources(menuStrip1, "menuStrip1");
-            menuStrip1.Items.AddRange(new ToolStripItem[] { about_bumpx });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { outputToolStripMenuItem, about_bumpx });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Name = "menuStrip1";
+            // 
+            // outputToolStripMenuItem
+            // 
+            outputToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { pack_output_path, unpack_output_path });
+            outputToolStripMenuItem.Name = "outputToolStripMenuItem";
+            resources.ApplyResources(outputToolStripMenuItem, "outputToolStripMenuItem");
+            // 
+            // pack_output_path
+            // 
+            pack_output_path.CheckOnClick = true;
+            pack_output_path.Name = "pack_output_path";
+            resources.ApplyResources(pack_output_path, "pack_output_path");
+            // 
+            // unpack_output_path
+            // 
+            unpack_output_path.CheckOnClick = true;
+            unpack_output_path.Name = "unpack_output_path";
+            resources.ApplyResources(unpack_output_path, "unpack_output_path");
             // 
             // about_bumpx
             // 
@@ -191,6 +212,7 @@
             resources.ApplyResources(nmap_text_box, "nmap_text_box");
             nmap_text_box.Name = "nmap_text_box";
             nmap_text_box.ReadOnly = true;
+            nmap_text_box.TextChanged += nmap_text_box_TextChanged;
             // 
             // statusStrip1
             // 
@@ -269,5 +291,8 @@
         private StatusStrip statusStrip1;
         private ToolStripStatusLabel toolStripStatusLabel1;
         private ToolStripProgressBar toolStripProgressBar1;
+        private ToolStripMenuItem outputToolStripMenuItem;
+        private ToolStripMenuItem pack_output_path;
+        private ToolStripMenuItem unpack_output_path;
     }
 }
