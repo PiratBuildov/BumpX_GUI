@@ -203,7 +203,7 @@ namespace WinFormsApp1
             String lin_gloss_check;
             String bumpx_dir;
             FolderBrowserDialog pack_out_dialog = new FolderBrowserDialog();
-            String pack_path = "";
+            String pack_path = Application.StartupPath;
             bumpx_dir = Application.StartupPath;
             if (Nmap_Files.Length == 0)
             {
@@ -275,18 +275,6 @@ namespace WinFormsApp1
                     quality_index = "3";
                     break;
             }
-            if (pack_output_path.Checked)
-            {
-                if (pack_out_dialog.ShowDialog() == DialogResult.OK)
-                {
-                    pack_path = pack_out_dialog.SelectedPath;
-                }
-                else
-                {
-                    pack_path = "";
-                }
-                output = $"{pack_path}\\{output}";
-            }
             toolStripProgressBar1.Maximum = Nmap_Files.Length;
             toolStripProgressBar1.Step = 1;
             ProcessStartInfo psi = new ProcessStartInfo();
@@ -296,12 +284,26 @@ namespace WinFormsApp1
             psi.CreateNoWindow = true;
             for (int i = 0; i < Nmap_Files.Length; i++)
             {
+                if (pack_output_path.Checked)
+                {
+                    if (pack_out_dialog.ShowDialog() == DialogResult.OK)
+                    {
+                        pack_path = pack_out_dialog.SelectedPath;
+                    }
+                    else
+                    {
+                        pack_path = "";
+                        toolStripStatusLabel1.Text = "Packing: Cancelled";
+                        break;
+                    }
+                    output = $"{pack_path}\\{output}";
+                }
                 psi.Arguments = $"-n:{Nmap_Files[i]} -g:{Gloss_Files[i]} -h:{Height_Files[i]} {lin_gloss_check} -q:{quality_index} -o:{output}";
                 toolStripStatusLabel1.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
                 toolStripProgressBar1.PerformStep();
                 Process.Start(psi).WaitForExit();
+                toolStripStatusLabel1.Text = "Packing done!";
             }
-            toolStripStatusLabel1.Text = "Packing done!";
         }
 
         private void btn_dis_bump_Click(object sender, EventArgs e)
@@ -312,7 +314,7 @@ namespace WinFormsApp1
             String unpack_output = "";
             String error_map_check;
             FolderBrowserDialog unpack_out_dialog = new FolderBrowserDialog();
-            String unpack_path = "";
+            String unpack_path = Application.StartupPath;
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose bump file";
@@ -324,18 +326,7 @@ namespace WinFormsApp1
                 statusStrip1.Enabled = true;
                 if (file.FileNames.Length <= 25)
                 {
-                    if (unpack_output_path.Checked)
-                    {
-                        if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
-                        {
-                            unpack_path = unpack_out_dialog.SelectedPath;
-                        }
-                        else
-                        {
-                            unpack_path = "";
-                        }
-                        unpack_output = $"{unpack_path}\\{unpack_output}";
-                    }
+                    
                     toolStripProgressBar1.Maximum = file.FileNames.Length;
                     toolStripProgressBar1.Step = 1;
                     ProcessStartInfo psi = new ProcessStartInfo();
@@ -344,6 +335,20 @@ namespace WinFormsApp1
                     psi.CreateNoWindow = true;
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
+                        if (unpack_output_path.Checked)
+                        {
+                            if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
+                            {
+                                unpack_path = unpack_out_dialog.SelectedPath;
+                            }
+                            else
+                            {
+                                unpack_path = "";
+                                toolStripStatusLabel1.Text = "Unpacking: Cancelled";
+                                break;
+                            }
+                        }
+                        unpack_output = $"{unpack_path}\\{unpack_output}";
                         psi.Arguments = $"\"{file.FileNames[i]}\" {unpack_output}";
                         var bump_map_size = new FileInfo(file.FileNames[i]).Length;
                         error_map_check = file.FileNames[i];
@@ -437,6 +442,7 @@ namespace WinFormsApp1
                         Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
                         Nmap_Files[Nmap_Files.Length - 1] = objects[i];
                         nmap_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        nmap_text_box.ReadOnly = true;
                         nmap_text_box.Enabled = true;
                     }
                     else

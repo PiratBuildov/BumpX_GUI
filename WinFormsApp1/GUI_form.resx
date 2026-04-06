@@ -250,7 +250,7 @@
     <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_choose_height.Location" type="System.Drawing.Point, System.Drawing">
-    <value>559, 190</value>
+    <value>559, 171</value>
   </data>
   <data name="btn_choose_height.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 32</value>
@@ -284,7 +284,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="height_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 193</value>
+    <value>16, 174</value>
   </data>
   <data name="height_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>110, 25</value>
@@ -365,7 +365,7 @@
     <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_dis_bump.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 353</value>
+    <value>12, 327</value>
   </data>
   <data name="btn_dis_bump.Size" type="System.Drawing.Size, System.Drawing">
     <value>141, 35</value>
@@ -395,7 +395,7 @@
     <value>Segoe UI, 13pt</value>
   </data>
   <data name="btn_create_bump.Location" type="System.Drawing.Point, System.Drawing">
-    <value>559, 282</value>
+    <value>559, 263</value>
   </data>
   <data name="btn_create_bump.Size" type="System.Drawing.Size, System.Drawing">
     <value>115, 32</value>
@@ -458,7 +458,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="hmap_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 190</value>
+    <value>144, 171</value>
   </data>
   <data name="hmap_text_box.Size" type="System.Drawing.Size, System.Drawing">
     <value>403, 32</value>
@@ -488,7 +488,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 285</value>
+    <value>12, 266</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 25</value>
@@ -515,7 +515,7 @@
     <value>Segoe UI, 14pt</value>
   </data>
   <data name="bump_text_box.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 282</value>
+    <value>144, 263</value>
   </data>
   <data name="bump_text_box.Size" type="System.Drawing.Size, System.Drawing">
     <value>403, 32</value>
@@ -586,7 +586,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>NoControl</value>
   </data>
   <data name="quality_label.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 238</value>
+    <value>53, 219</value>
   </data>
   <data name="quality_label.Size" type="System.Drawing.Size, System.Drawing">
     <value>76, 25</value>
@@ -625,7 +625,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>STB compressor (quality level 0)</value>
   </data>
   <data name="quality_changer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 235</value>
+    <value>144, 216</value>
   </data>
   <data name="quality_changer.Size" type="System.Drawing.Size, System.Drawing">
     <value>403, 33</value>
@@ -685,10 +685,10 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>Waiting</value>
   </data>
   <data name="toolStripProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 24</value>
+    <value>150, 24</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 404</value>
+    <value>0, 376</value>
   </data>
   <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
     <value>687, 30</value>
@@ -721,7 +721,7 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>687, 434</value>
+    <value>687, 406</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

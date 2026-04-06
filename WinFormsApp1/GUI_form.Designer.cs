@@ -211,7 +211,6 @@
             nmap_text_box.BackColor = SystemColors.Window;
             resources.ApplyResources(nmap_text_box, "nmap_text_box");
             nmap_text_box.Name = "nmap_text_box";
-            nmap_text_box.ReadOnly = true;
             nmap_text_box.TextChanged += nmap_text_box_TextChanged;
             // 
             // statusStrip1
