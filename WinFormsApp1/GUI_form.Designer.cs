@@ -41,6 +41,7 @@
             pack_output_path = new ToolStripMenuItem();
             unpack_output_path = new ToolStripMenuItem();
             about_bumpx = new ToolStripMenuItem();
+            btn_clear_input = new ToolStripMenuItem();
             btn_dis_bump = new Button();
             btn_create_bump = new Button();
             openFileDialog1 = new OpenFileDialog();
@@ -54,8 +55,8 @@
             quality_changer = new ComboBox();
             nmap_text_box = new TextBox();
             statusStrip1 = new StatusStrip();
-            toolStripStatusLabel1 = new ToolStripStatusLabel();
-            toolStripProgressBar1 = new ToolStripProgressBar();
+            tsStatusText = new ToolStripStatusLabel();
+            tsProgressBar = new ToolStripProgressBar();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -112,7 +113,7 @@
             // 
             menuStrip1.BackColor = SystemColors.ControlLight;
             resources.ApplyResources(menuStrip1, "menuStrip1");
-            menuStrip1.Items.AddRange(new ToolStripItem[] { outputToolStripMenuItem, about_bumpx });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { outputToolStripMenuItem, btn_clear_input, about_bumpx });
             menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Name = "menuStrip1";
             // 
@@ -140,6 +141,12 @@
             resources.ApplyResources(about_bumpx, "about_bumpx");
             about_bumpx.Click += about_bumpx_Click;
             // 
+            // btn_clear_input
+            // 
+            btn_clear_input.Name = "btn_clear_input";
+            resources.ApplyResources(btn_clear_input, "btn_clear_input");
+            btn_clear_input.Click += btn_clear_input_Click;
+            // 
             // btn_dis_bump
             // 
             btn_dis_bump.AllowDrop = true;
@@ -163,15 +170,21 @@
             // 
             // gloss_text_box
             // 
+            gloss_text_box.AllowDrop = true;
             resources.ApplyResources(gloss_text_box, "gloss_text_box");
             gloss_text_box.Name = "gloss_text_box";
             gloss_text_box.TextChanged += gloss_text_box_TextChanged;
+            gloss_text_box.DragDrop += btn_choose_gloss_DragDrop;
+            gloss_text_box.DragEnter += btn_choose_gloss_DragEnter;
             // 
             // hmap_text_box
             // 
+            hmap_text_box.AllowDrop = true;
             resources.ApplyResources(hmap_text_box, "hmap_text_box");
             hmap_text_box.Name = "hmap_text_box";
             hmap_text_box.TextChanged += hmap_text_box_TextChanged;
+            hmap_text_box.DragDrop += btn_choose_hmap_DragDrop;
+            hmap_text_box.DragEnter += btn_choose_hmap_DragEnter;
             // 
             // label1
             // 
@@ -208,26 +221,29 @@
             // 
             // nmap_text_box
             // 
+            nmap_text_box.AllowDrop = true;
             nmap_text_box.BackColor = SystemColors.Window;
             resources.ApplyResources(nmap_text_box, "nmap_text_box");
             nmap_text_box.Name = "nmap_text_box";
             nmap_text_box.TextChanged += nmap_text_box_TextChanged;
+            nmap_text_box.DragDrop += btn_choose_nmap_DragDrop;
+            nmap_text_box.DragEnter += btn_choose_nmap_DragEnter;
             // 
             // statusStrip1
             // 
-            statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripProgressBar1 });
+            statusStrip1.Items.AddRange(new ToolStripItem[] { tsStatusText, tsProgressBar });
             resources.ApplyResources(statusStrip1, "statusStrip1");
             statusStrip1.Name = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // tsStatusText
             // 
-            resources.ApplyResources(toolStripStatusLabel1, "toolStripStatusLabel1");
-            toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            resources.ApplyResources(tsStatusText, "tsStatusText");
+            tsStatusText.Name = "tsStatusText";
             // 
-            // toolStripProgressBar1
+            // tsProgressBar
             // 
-            toolStripProgressBar1.Name = "toolStripProgressBar1";
-            resources.ApplyResources(toolStripProgressBar1, "toolStripProgressBar1");
+            tsProgressBar.Name = "tsProgressBar";
+            resources.ApplyResources(tsProgressBar, "tsProgressBar");
             // 
             // GUI_form
             // 
@@ -288,10 +304,11 @@
         private CheckBox force_lin_gloss;
         private TextBox nmap_text_box;
         private StatusStrip statusStrip1;
-        private ToolStripStatusLabel toolStripStatusLabel1;
-        private ToolStripProgressBar toolStripProgressBar1;
+        private ToolStripStatusLabel tsStatusText;
+        private ToolStripProgressBar tsProgressBar;
         private ToolStripMenuItem outputToolStripMenuItem;
         private ToolStripMenuItem pack_output_path;
         private ToolStripMenuItem unpack_output_path;
+        private ToolStripMenuItem btn_clear_input;
     }
 }

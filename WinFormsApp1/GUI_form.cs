@@ -1,12 +1,5 @@
-using BumpX_GUI.Properties;
-using System.ComponentModel;
-using System.Configuration;
 using System.Diagnostics;
-using System.Reflection;
-using System.Security.Cryptography;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
 
 namespace WinFormsApp1
 {
@@ -26,11 +19,12 @@ namespace WinFormsApp1
         private void Form1_Load(object sender, EventArgs e)
         {
             statusStrip1.Enabled = false;
-            toolStripProgressBar1.Value = 0;
+            tsProgressBar.Value = 0;
             bump_text_box.Enabled = false;
             MaximizeBox = false;
             force_lin_gloss.Checked = true;
             quality_changer.SelectedIndex = 0;
+            btn_create_bump.Enabled = false;
             if (!File.Exists("./bumpx.exe"))
             {
                 this.TopMost = true;
@@ -90,7 +84,7 @@ namespace WinFormsApp1
                         Array.Resize<String>(ref Gloss_Files, Nmap_Files.Length + 1);
                         Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
                         Nmap_Files[Nmap_Files.Length - 1] = item;
-                        nmap_text_box.Text += $"{Regex.Match(item, Regex_Pattern).Value}, ";
+                        nmap_text_box.Text += @$"{Regex.Match(item, Regex_Pattern).Value}, ";
                         nmap_text_box.ReadOnly = true;
                         nmap_text_box.Enabled = true;
                     }
@@ -106,8 +100,9 @@ namespace WinFormsApp1
                         MessageBoxOptions.DefaultDesktopOnly);
                     this.TopMost = false;
                 }
+                btn_create_bump.Enabled = true;
                 statusStrip1.Enabled = true;
-                toolStripStatusLabel1.Text = "Ready";
+                tsStatusText.Text = "Ready";
             }
             if (Nmap_Files.Length == 1)
             {
@@ -135,7 +130,7 @@ namespace WinFormsApp1
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
                         Gloss_Files[i] = file.FileNames[i];
-                        gloss_text_box.Text += $"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
+                        gloss_text_box.Text += @$"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
                         gloss_text_box.ReadOnly = true;
                         gloss_text_box.Enabled = true;
                     }
@@ -172,7 +167,7 @@ namespace WinFormsApp1
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
                         Height_Files[i] = file.FileNames[i];
-                        hmap_text_box.Text += $"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
+                        hmap_text_box.Text += @$"{Regex.Match(file.FileNames[i], Regex_Pattern).Value}, ";
                         hmap_text_box.ReadOnly = true;
                         hmap_text_box.Enabled = true;
                     }
@@ -219,7 +214,7 @@ namespace WinFormsApp1
             }
             else
             {
-                toolStripStatusLabel1.Text = "Ready";
+                tsStatusText.Text = "Ready";
             }
             if (Gloss_Files.Length == 0)
             {
@@ -275,11 +270,11 @@ namespace WinFormsApp1
                     quality_index = "3";
                     break;
             }
-            toolStripProgressBar1.Maximum = Nmap_Files.Length;
-            toolStripProgressBar1.Step = 1;
+            tsProgressBar.Maximum = Nmap_Files.Length;
+            tsProgressBar.Step = 1;
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.WorkingDirectory = bumpx_dir;
-            psi.FileName = "bumpx.exe";
+            psi.FileName = @"bumpx.exe";
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
             for (int i = 0; i < Nmap_Files.Length; i++)
@@ -293,24 +288,22 @@ namespace WinFormsApp1
                     else
                     {
                         pack_path = "";
-                        toolStripStatusLabel1.Text = "Packing: Cancelled";
+                        tsStatusText.Text = "Packing: Cancelled";
                         break;
                     }
-                    output = $"{pack_path}\\{output}";
+                    output = @$"{pack_path}\\{output}";
                 }
-                psi.Arguments = $"-n:{Nmap_Files[i]} -g:{Gloss_Files[i]} -h:{Height_Files[i]} {lin_gloss_check} -q:{quality_index} -o:{output}";
-                toolStripStatusLabel1.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
-                toolStripProgressBar1.PerformStep();
+                psi.Arguments = $"-n:\"{Nmap_Files[i]}\" -g:\"{Gloss_Files[i]}\" -h:\"{Height_Files[i]}\" {lin_gloss_check} -q:{quality_index} -o:\"{output}\"";
+                tsStatusText.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
+                tsProgressBar.PerformStep();
                 Process.Start(psi).WaitForExit();
-                toolStripStatusLabel1.Text = "Packing done!";
+                tsStatusText.Text = "Packing done!";
             }
         }
 
         private void btn_dis_bump_Click(object sender, EventArgs e)
         {
-            //toolStripStatusLabel1.Text = "0/0";
-            toolStripProgressBar1.Value = 0;
-
+            tsProgressBar.Value = 0;
             String unpack_output = "";
             String error_map_check;
             FolderBrowserDialog unpack_out_dialog = new FolderBrowserDialog();
@@ -318,7 +311,7 @@ namespace WinFormsApp1
             OpenFileDialog file = new OpenFileDialog();
             file.InitialDirectory = Application.StartupPath;
             file.Title = "Choose bump file";
-            file.Filter = "_bump texture (*_bump.dds)|*_bump.dds";
+            file.Filter = "_bump texture (bump.dds)|*bump.dds";
             file.Multiselect = true;
             file.ShowDialog();
             if (!file.FileNames.Equals(""))
@@ -326,13 +319,14 @@ namespace WinFormsApp1
                 statusStrip1.Enabled = true;
                 if (file.FileNames.Length <= 25)
                 {
-                    
-                    toolStripProgressBar1.Maximum = file.FileNames.Length;
-                    toolStripProgressBar1.Step = 1;
+                    tsProgressBar.Maximum = file.FileNames.Length;
+                    tsProgressBar.Step = 1;
                     ProcessStartInfo psi = new ProcessStartInfo();
-                    psi.FileName = "bumpx.exe";
+                    psi.FileName = @"bumpx.exe";
                     psi.UseShellExecute = false;
                     psi.CreateNoWindow = true;
+                    psi.WorkingDirectory = Application.StartupPath;
+
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
                         if (unpack_output_path.Checked)
@@ -344,12 +338,14 @@ namespace WinFormsApp1
                             else
                             {
                                 unpack_path = "";
-                                toolStripStatusLabel1.Text = "Unpacking: Cancelled";
+                                tsStatusText.Text = "Unpacking: Cancelled";
                                 break;
                             }
                         }
+                        // TODO: finish unpacking path problem
+                        //unpack_output = Path.Combine(unpack_path, unpack_output);
                         unpack_output = $"{unpack_path}\\{unpack_output}";
-                        psi.Arguments = $"\"{file.FileNames[i]}\" {unpack_output}";
+                        psi.Arguments = $"\"{file.FileNames[i]}\" \"{unpack_output}\"";
                         var bump_map_size = new FileInfo(file.FileNames[i]).Length;
                         error_map_check = file.FileNames[i];
                         error_map_check = error_map_check.Replace(".dds", "#.dds");
@@ -382,9 +378,9 @@ namespace WinFormsApp1
                             else
                             {
                                 Process.Start(psi).WaitForExit();
-                                toolStripProgressBar1.PerformStep();
-                                toolStripStatusLabel1.Text = $"Unpacking {i + 1}/{file.FileNames.Length}...";
-                                toolStripStatusLabel1.Text = "Unpacking done!";
+                                tsProgressBar.PerformStep();
+                                tsStatusText.Text = $"Unpacking {i + 1}/{file.FileNames.Length}...";
+                                tsStatusText.Text = "Unpacking done!";
                             }
                         }
                     }
@@ -428,8 +424,6 @@ namespace WinFormsApp1
                 bump_text_box.Text = "";
                 nmap_text_box.Text = "";
                 Nmap_Files = new String[0];
-                Gloss_Files = new String[0];
-                Height_Files = new String[0];
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 nmap_text_box.Text = null;
                 nmap_text_box.ReadOnly = true;
@@ -438,10 +432,8 @@ namespace WinFormsApp1
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
                         Array.Resize<String>(ref Nmap_Files, Nmap_Files.Length + 1);
-                        Array.Resize<String>(ref Gloss_Files, Nmap_Files.Length + 1);
-                        Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
                         Nmap_Files[Nmap_Files.Length - 1] = objects[i];
-                        nmap_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        nmap_text_box.Text += @$"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
                         nmap_text_box.ReadOnly = true;
                         nmap_text_box.Enabled = true;
                     }
@@ -455,8 +447,16 @@ namespace WinFormsApp1
                         MessageBoxDefaultButton.Button1,
                         MessageBoxOptions.DefaultDesktopOnly);
                     }
+                    btn_create_bump.Enabled = true;
                 }
-
+                if (Nmap_Files.Length == 1)
+                {
+                    bump_text_box.Enabled = true;
+                }
+                else
+                {
+                    bump_text_box.Enabled = false;
+                }
             }
         }
 
@@ -464,7 +464,8 @@ namespace WinFormsApp1
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
             {
-                hmap_text_box.Text = "";
+                gloss_text_box.Text = "";
+                Gloss_Files = new String[0];
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 gloss_text_box.Text = null;
                 gloss_text_box.ReadOnly = true;
@@ -472,8 +473,9 @@ namespace WinFormsApp1
                 {
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
+                        Array.Resize<String>(ref Gloss_Files, Nmap_Files.Length + 1);
                         Gloss_Files[i] = objects[i];
-                        gloss_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        gloss_text_box.Text += @$"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
                         gloss_text_box.ReadOnly = true;
                         gloss_text_box.Enabled = true;
                     }
@@ -512,6 +514,7 @@ namespace WinFormsApp1
             if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Effect == DragDropEffects.Move)
             {
                 hmap_text_box.Text = "";
+                Height_Files = new String[0];
                 string[] objects = (string[])e.Data.GetData(DataFormats.FileDrop);
                 hmap_text_box.Text = null;
                 hmap_text_box.ReadOnly = true;
@@ -519,8 +522,9 @@ namespace WinFormsApp1
                 {
                     if (objects.All(file => IsValidFileFormat(file, new string[] { ".jpg", ".png", ".tga", ".bmp" })))
                     {
+                        Array.Resize<String>(ref Height_Files, Nmap_Files.Length + 1);
                         Height_Files[i] = objects[i];
-                        hmap_text_box.Text += $"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
+                        hmap_text_box.Text += @$"{Regex.Match(objects[i], Regex_Pattern).Value}, ";
                         hmap_text_box.ReadOnly = true;
                         hmap_text_box.Enabled = true;
                     }
@@ -543,6 +547,22 @@ namespace WinFormsApp1
         {
             string fileExtension = Path.GetExtension(filePath).ToLower();
             return validFormats.Contains(fileExtension);
+        }
+
+        private void btn_clear_input_Click(object sender, EventArgs e)
+        {
+            nmap_text_box.Text = "";
+            nmap_text_box.Enabled = false;
+            gloss_text_box.Text = "";
+            gloss_text_box.Enabled = false;
+            hmap_text_box.Text = "";
+            hmap_text_box.Enabled = false;
+            bump_text_box.Text = "";
+            bump_text_box.Enabled = false;
+            btn_create_bump.Enabled = false;
+            tsProgressBar.Value = 0;
+            tsStatusText.Text = "Waiting";
+            statusStrip1.Enabled = false;
         }
     }
 }

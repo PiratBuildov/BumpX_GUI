@@ -331,6 +331,12 @@
   <data name="outputToolStripMenuItem.Text" xml:space="preserve">
     <value>Output</value>
   </data>
+  <data name="btn_clear_input.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 20</value>
+  </data>
+  <data name="btn_clear_input.Text" xml:space="preserve">
+    <value>Clear Input</value>
+  </data>
   <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
   </data>
@@ -675,16 +681,16 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>369, 17</value>
   </metadata>
-  <data name="toolStripStatusLabel1.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="tsStatusText.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 13pt</value>
   </data>
-  <data name="toolStripStatusLabel1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tsStatusText.Size" type="System.Drawing.Size, System.Drawing">
     <value>72, 25</value>
   </data>
-  <data name="toolStripStatusLabel1.Text" xml:space="preserve">
+  <data name="tsStatusText.Text" xml:space="preserve">
     <value>Waiting</value>
   </data>
-  <data name="toolStripProgressBar1.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="tsProgressBar.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 24</value>
   </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
@@ -1040,6 +1046,12 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <data name="&gt;&gt;about_bumpx.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;btn_clear_input.Name" xml:space="preserve">
+    <value>btn_clear_input</value>
+  </data>
+  <data name="&gt;&gt;btn_clear_input.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">
     <value>openFileDialog1</value>
   </data>
@@ -1052,16 +1064,16 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <data name="&gt;&gt;toolTip1.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Name" xml:space="preserve">
-    <value>toolStripStatusLabel1</value>
+  <data name="&gt;&gt;tsStatusText.Name" xml:space="preserve">
+    <value>tsStatusText</value>
   </data>
-  <data name="&gt;&gt;toolStripStatusLabel1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsStatusText.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripProgressBar1.Name" xml:space="preserve">
-    <value>toolStripProgressBar1</value>
+  <data name="&gt;&gt;tsProgressBar.Name" xml:space="preserve">
+    <value>tsProgressBar</value>
   </data>
-  <data name="&gt;&gt;toolStripProgressBar1.Type" xml:space="preserve">
+  <data name="&gt;&gt;tsProgressBar.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripProgressBar, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
