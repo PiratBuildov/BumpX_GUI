@@ -277,22 +277,23 @@ namespace WinFormsApp1
             psi.FileName = @"bumpx.exe";
             psi.UseShellExecute = false;
             psi.CreateNoWindow = true;
+            if (pack_output_path.Checked)
+            {
+                if (pack_out_dialog.ShowDialog() == DialogResult.OK)
+                {
+                    pack_path = pack_out_dialog.SelectedPath;
+                }
+                else
+                {
+                    pack_path = "";
+                    tsStatusText.Text = "Packing: Cancelled";
+                   // break;
+                }
+                output = @$"{pack_path}\\{output}";
+            }
             for (int i = 0; i < Nmap_Files.Length; i++)
             {
-                if (pack_output_path.Checked)
-                {
-                    if (pack_out_dialog.ShowDialog() == DialogResult.OK)
-                    {
-                        pack_path = pack_out_dialog.SelectedPath;
-                    }
-                    else
-                    {
-                        pack_path = "";
-                        tsStatusText.Text = "Packing: Cancelled";
-                        break;
-                    }
-                    output = @$"{pack_path}\\{output}";
-                }
+                
                 psi.Arguments = $"-n:\"{Nmap_Files[i]}\" -g:\"{Gloss_Files[i]}\" -h:\"{Height_Files[i]}\" {lin_gloss_check} -q:{quality_index} -o:\"{output}\"";
                 tsStatusText.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
                 tsProgressBar.PerformStep();
@@ -326,29 +327,27 @@ namespace WinFormsApp1
                     psi.UseShellExecute = false;
                     psi.CreateNoWindow = true;
                     psi.WorkingDirectory = Application.StartupPath;
-
+                    if (unpack_output_path.Checked)
+                    {
+                        if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
+                        {
+                            unpack_path = unpack_out_dialog.SelectedPath;
+                        }
+                        else
+                        {
+                            unpack_path = "";
+                            tsStatusText.Text = "Unpacking: Cancelled";
+                          //  break;
+                        }
+                        unpack_output = @$"{unpack_path}\\{unpack_output}";
+                    }
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
-                        if (unpack_output_path.Checked)
-                        {
-                            if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
-                            {
-                                unpack_path = unpack_out_dialog.SelectedPath;
-                            }
-                            else
-                            {
-                                unpack_path = "";
-                                tsStatusText.Text = "Unpacking: Cancelled";
-                                break;
-                            }
-                        }
-                        // TODO: finish unpacking path problem
-                        //unpack_output = Path.Combine(unpack_path, unpack_output);
-                        unpack_output = $"{unpack_path}\\{unpack_output}";
+                        
                         psi.Arguments = $"\"{file.FileNames[i]}\" \"{unpack_output}\"";
                         var bump_map_size = new FileInfo(file.FileNames[i]).Length;
-                        error_map_check = file.FileNames[i];
-                        error_map_check = error_map_check.Replace(".dds", "#.dds");
+                        //error_map_check = file.FileNames[i];
+                        error_map_check = file.FileNames[i].Replace(".dds", "#.dds");
                         if (!File.Exists(error_map_check))
                         {
                             this.TopMost = true;
@@ -358,6 +357,7 @@ namespace WinFormsApp1
                             MessageBoxIcon.Error,
                             MessageBoxDefaultButton.Button1,
                             MessageBoxOptions.DefaultDesktopOnly);
+                            tsStatusText.Text = "Invalid bump! Unpacking cancelled";
                             this.TopMost = false;
                             break;
                         }
@@ -373,6 +373,7 @@ namespace WinFormsApp1
                                 MessageBoxIcon.Error,
                                 MessageBoxDefaultButton.Button1,
                                 MessageBoxOptions.DefaultDesktopOnly);
+                                tsStatusText.Text = "Invalid bump! Unpacking cancelled";
                                 this.TopMost = false;
                             }
                             else
