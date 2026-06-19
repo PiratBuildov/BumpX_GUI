@@ -1040,16 +1040,16 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <data name="&gt;&gt;unpack_output_path.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;about_bumpx.Name" xml:space="preserve">
-    <value>about_bumpx</value>
-  </data>
-  <data name="&gt;&gt;about_bumpx.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;btn_clear_input.Name" xml:space="preserve">
     <value>btn_clear_input</value>
   </data>
   <data name="&gt;&gt;btn_clear_input.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;about_bumpx.Name" xml:space="preserve">
+    <value>about_bumpx</value>
+  </data>
+  <data name="&gt;&gt;about_bumpx.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;openFileDialog1.Name" xml:space="preserve">

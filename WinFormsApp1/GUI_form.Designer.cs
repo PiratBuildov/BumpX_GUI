@@ -40,8 +40,8 @@
             outputToolStripMenuItem = new ToolStripMenuItem();
             pack_output_path = new ToolStripMenuItem();
             unpack_output_path = new ToolStripMenuItem();
-            about_bumpx = new ToolStripMenuItem();
             btn_clear_input = new ToolStripMenuItem();
+            about_bumpx = new ToolStripMenuItem();
             btn_dis_bump = new Button();
             btn_create_bump = new Button();
             openFileDialog1 = new OpenFileDialog();
@@ -135,17 +135,17 @@
             unpack_output_path.Name = "unpack_output_path";
             resources.ApplyResources(unpack_output_path, "unpack_output_path");
             // 
-            // about_bumpx
-            // 
-            about_bumpx.Name = "about_bumpx";
-            resources.ApplyResources(about_bumpx, "about_bumpx");
-            about_bumpx.Click += about_bumpx_Click;
-            // 
             // btn_clear_input
             // 
             btn_clear_input.Name = "btn_clear_input";
             resources.ApplyResources(btn_clear_input, "btn_clear_input");
             btn_clear_input.Click += btn_clear_input_Click;
+            // 
+            // about_bumpx
+            // 
+            about_bumpx.Name = "about_bumpx";
+            resources.ApplyResources(about_bumpx, "about_bumpx");
+            about_bumpx.Click += about_bumpx_Click;
             // 
             // btn_dis_bump
             // 
@@ -214,6 +214,7 @@
             // 
             // quality_changer
             // 
+            quality_changer.DropDownStyle = ComboBoxStyle.DropDownList;
             resources.ApplyResources(quality_changer, "quality_changer");
             quality_changer.FormattingEnabled = true;
             quality_changer.Items.AddRange(new object[] { resources.GetString("quality_changer.Items"), resources.GetString("quality_changer.Items1"), resources.GetString("quality_changer.Items2"), resources.GetString("quality_changer.Items3") });

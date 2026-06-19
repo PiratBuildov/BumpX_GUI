@@ -12,8 +12,6 @@ namespace WinFormsApp1
         public GUI_form()
         {
             InitializeComponent();
-
-            this.quality_changer.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -343,10 +341,8 @@ namespace WinFormsApp1
                     }
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
-                        
                         psi.Arguments = $"\"{file.FileNames[i]}\" \"{unpack_output}\"";
                         var bump_map_size = new FileInfo(file.FileNames[i]).Length;
-                        //error_map_check = file.FileNames[i];
                         error_map_check = file.FileNames[i].Replace(".dds", "#.dds");
                         if (!File.Exists(error_map_check))
                         {
