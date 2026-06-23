@@ -149,6 +149,9 @@
   <data name="&gt;&gt;nmap_label.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="btn_choose_nmap.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 13pt</value>
   </data>
@@ -168,11 +171,8 @@
   <data name="btn_choose_nmap.Text" xml:space="preserve">
     <value>Choose file</value>
   </data>
-  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>272, 17</value>
-  </metadata>
   <data name="btn_choose_nmap.ToolTip" xml:space="preserve">
-    <value>Normal map is necessary to create bump.</value>
+    <value>Normal map is necessary to create a bump-map.</value>
   </data>
   <data name="&gt;&gt;btn_choose_nmap.Name" xml:space="preserve">
     <value>btn_choose_nmap</value>
@@ -202,7 +202,8 @@
     <value>Choose file</value>
   </data>
   <data name="btn_choose_gloss.ToolTip" xml:space="preserve">
-    <value>Gloss map is optional, if you don't have such it will be filled with default value.</value>
+    <value>Gloss map is optional.
+If the field is empty then the default value will be used instead (0, 0, 0).</value>
   </data>
   <data name="&gt;&gt;btn_choose_gloss.Name" xml:space="preserve">
     <value>btn_choose_gloss</value>
@@ -262,8 +263,8 @@
     <value>Choose file</value>
   </data>
   <data name="btn_choose_height.ToolTip" xml:space="preserve">
-    <value>Height map is optional, if you don't have such it will be filled with default value.
-</value>
+    <value>Height map is optional.
+If the field is empty the default value will be used instead (127, 127, 127).</value>
   </data>
   <data name="&gt;&gt;btn_choose_height.Name" xml:space="preserve">
     <value>btn_choose_height</value>
@@ -319,11 +320,19 @@
   <data name="pack_output_path.Text" xml:space="preserve">
     <value>Packing: ask for output path</value>
   </data>
+  <data name="pack_output_path.ToolTipText" xml:space="preserve">
+    <value>If checked opens select path dialog and packs bump texture(s) in selected directory.
+If not packs bump(s) in application startup path.</value>
+  </data>
   <data name="unpack_output_path.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 22</value>
   </data>
   <data name="unpack_output_path.Text" xml:space="preserve">
     <value>Unpacking: ask for output path</value>
+  </data>
+  <data name="unpack_output_path.ToolTipText" xml:space="preserve">
+    <value>If checked opens select path dialog and unpacks bump texture(s) in selected directory.
+If not unpacks bump(s) in application startup path.</value>
   </data>
   <data name="outputToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>57, 20</value>
@@ -336,6 +345,9 @@
   </data>
   <data name="btn_clear_input.Text" xml:space="preserve">
     <value>Clear Input</value>
+  </data>
+  <data name="btn_clear_input.ToolTipText" xml:space="preserve">
+    <value>Clears selected textures</value>
   </data>
   <data name="about_bumpx.Size" type="System.Drawing.Size, System.Drawing">
     <value>52, 20</value>
@@ -532,7 +544,7 @@
   <data name="bump_text_box.ToolTip" xml:space="preserve">
     <value>Give your bump a name, for example: act_1.
 The result will be: act_1_bump and act_1_bump#.
-If you don't do it the result will be: image_bump and image_bump#.</value>
+The default bump name is: image_bump and image_bump#.</value>
   </data>
   <data name="&gt;&gt;bump_text_box.Name" xml:space="preserve">
     <value>bump_text_box</value>
@@ -546,6 +558,9 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <data name="&gt;&gt;bump_text_box.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
+  <metadata name="toolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
   <data name="force_lin_gloss.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -681,18 +696,6 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>369, 17</value>
   </metadata>
-  <data name="tsStatusText.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 13pt</value>
-  </data>
-  <data name="tsStatusText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 25</value>
-  </data>
-  <data name="tsStatusText.Text" xml:space="preserve">
-    <value>Waiting</value>
-  </data>
-  <data name="tsProgressBar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>150, 24</value>
-  </data>
   <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 376</value>
   </data>
@@ -716,6 +719,18 @@ If you don't do it the result will be: image_bump and image_bump#.</value>
   </data>
   <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="tsStatusText.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 13pt</value>
+  </data>
+  <data name="tsStatusText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 25</value>
+  </data>
+  <data name="tsStatusText.Text" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="tsProgressBar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 24</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

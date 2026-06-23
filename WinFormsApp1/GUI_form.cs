@@ -196,8 +196,8 @@ namespace WinFormsApp1
             String lin_gloss_check;
             String bumpx_dir;
             FolderBrowserDialog pack_out_dialog = new FolderBrowserDialog();
-            String pack_path = Application.StartupPath;
             bumpx_dir = Application.StartupPath;
+            String pack_path = bumpx_dir;
             if (Nmap_Files.Length == 0)
             {
                 this.TopMost = true;
@@ -280,18 +280,35 @@ namespace WinFormsApp1
                 if (pack_out_dialog.ShowDialog() == DialogResult.OK)
                 {
                     pack_path = pack_out_dialog.SelectedPath;
+                    goto output_full_path;
                 }
                 else
                 {
-                    pack_path = "";
-                    tsStatusText.Text = "Packing: Cancelled";
-                   // break;
+                    pack_path = bumpx_dir;
+                    this.TopMost = true;
+                    DialogResult result = MessageBox.Show("No path was selected!\nContinue packing?\nThe bump will be packed in the default application folder.",
+                            "No path was selected!",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button1,
+                            MessageBoxOptions.DefaultDesktopOnly);
+                    this.TopMost = false;
+                    if (result == DialogResult.Yes)
+                    {
+                        goto output_def;
+                    }
+                    else {
+                        pack_path = "";
+                        tsStatusText.Text = "Packing: Cancelled";
+                        return;
+                    }
                 }
+            output_full_path:
                 output = @$"{pack_path}\\{output}";
             }
+        output_def:
             for (int i = 0; i < Nmap_Files.Length; i++)
             {
-                
                 psi.Arguments = $"-n:\"{Nmap_Files[i]}\" -g:\"{Gloss_Files[i]}\" -h:\"{Height_Files[i]}\" {lin_gloss_check} -q:{quality_index} -o:\"{output}\"";
                 tsStatusText.Text = $"Packing {i + 1}/{Nmap_Files.Length}...";
                 tsProgressBar.PerformStep();
@@ -330,15 +347,34 @@ namespace WinFormsApp1
                         if (unpack_out_dialog.ShowDialog() == DialogResult.OK)
                         {
                             unpack_path = unpack_out_dialog.SelectedPath;
+                            goto unpack_full_path;
                         }
                         else
                         {
-                            unpack_path = "";
-                            tsStatusText.Text = "Unpacking: Cancelled";
-                          //  break;
+                            //unpack_path = bumpx_dir;
+                            this.TopMost = true;
+                            DialogResult result = MessageBox.Show("No path was selected!\nContinue unpacking?\nThe bump will be unpacked in the default application folder.",
+                                    "No path was selected!",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+                            this.TopMost = false;
+                            if (result == DialogResult.Yes)
+                            {
+                                goto unpack_def;
+                            }
+                            else
+                            {
+                                unpack_path = "";
+                                tsStatusText.Text = "Unpacking: Cancelled";
+                                return;
+                            }
                         }
+                    unpack_full_path:
                         unpack_output = @$"{unpack_path}\\{unpack_output}";
                     }
+                unpack_def:
                     for (var i = 0; i < file.FileNames.Length; i++)
                     {
                         psi.Arguments = $"\"{file.FileNames[i]}\" \"{unpack_output}\"";
